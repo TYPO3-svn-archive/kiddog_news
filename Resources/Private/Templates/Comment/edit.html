@@ -1,0 +1,16 @@
+<h4>Edit Comment</h4>
+<f:form name="editComment" method="post" controller="Comment" action="update" name="editComment" object="{comment}" arguments="{post:post}">
+	<label for="author">name <span class="required">(required)</span></label><br />
+	<f:form.textbox id="name" property="name" />
+	<br />
+	<label for="email">email <span class="required">(required)</span></label><br />
+	<f:form.textbox id="email" property="eMail" />
+	<br />
+	<label for="email">website <span class="required">(required)</span></label><br />
+	<f:form.textbox id="website" property="website" />
+	<br />	
+	<label for="text">message <span class="required">(required)</span></label><br />
+	<f:form.textarea id="comment" property="comment" rows="6" cols="46"/>
+	<br />
+	<f:form.submit class="submit" value="Submit"/>
+</f:form>

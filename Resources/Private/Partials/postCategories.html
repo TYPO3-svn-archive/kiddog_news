@@ -1,0 +1,9 @@
+<f:if condition="{post.categories}">
+<hr/>
+<h3>Categories:</h3>
+	<ul>
+	<f:for each="{post.categories}" as="category">
+		<li>{category.name}</li>
+	</f:for>
+	</ul>
+</f:if>

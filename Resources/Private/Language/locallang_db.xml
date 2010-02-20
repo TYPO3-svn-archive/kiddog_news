@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'kiddog_news'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_kiddognews_domain_model_post">Post</label>
+			<label index="tx_kiddognews_domain_model_post.title">Title</label>
+			<label index="tx_kiddognews_domain_model_post.date">Date</label>
+			<label index="tx_kiddognews_domain_model_post.post">Post</label>
+			<label index="tx_kiddognews_domain_model_post.author">Author</label>
+			<label index="tx_kiddognews_domain_model_post.teaser">Teaser</label>
+			<label index="tx_kiddognews_domain_model_post.post">Post</label>
+			<label index="tx_kiddognews_domain_model_post.comments">Comments</label>
+			<label index="tx_kiddognews_domain_model_post.categories">Categories</label>
+			<label index="tx_kiddognews_domain_model_post.related_posts">RelatedPosts</label>
+			<label index="tx_kiddognews_domain_model_post.type">Type</label>
+			<label index="tx_kiddognews_domain_model_post.files">Files</label>
+			<label index="tx_kiddognews_domain_model_post.links">Links</label>
+			<label index="tx_kiddognews_domain_model_post.images">Images</label>
+			<label index="tx_kiddognews_domain_model_post.type.I.0">Post</label>
+			<label index="tx_kiddognews_domain_model_post.type.I.1">Link</label>						
+			<label index="tx_kiddognews_domain_model_comment">Comment</label>
+			<label index="tx_kiddognews_domain_model_comment.date">Date</label>
+			<label index="tx_kiddognews_domain_model_comment.name">Name</label>
+			<label index="tx_kiddognews_domain_model_comment.e_mail">EMail</label>
+			<label index="tx_kiddognews_domain_model_comment.website">Website</label>
+			<label index="tx_kiddognews_domain_model_comment.comment">Comment</label>
+			<label index="tx_kiddognews_domain_model_category">Category</label>
+			<label index="tx_kiddognews_domain_model_category.title">Title</label>
+			<label index="tx_kiddognews_domain_model_category.description">Description</label>
+			<label index="tx_kiddognews_domain_model_category.sub_categories">Sub-Categorie(s)</label>
+			<label index="tx_kiddognews_domain_model_category.image">Image</label>
+			<label index="tx_kiddognews_domain_model_file">File</label>
+			<label index="tx_kiddognews_domain_model_file.title">Title</label>
+			<label index="tx_kiddognews_domain_model_file.file">File</label>
+            <label index="tx_kiddognews_domain_model_image">image</label>
+            <label index="tx_kiddognews_domain_model_image.alt">Alt-Text</label>
+            <label index="tx_kiddognews_domain_model_image.title">Title-Text</label>
+            <label index="tx_kiddognews_domain_model_image.description">Description</label>
+            <label index="tx_kiddognews_domain_model_image.showonsingle">Show Image on Singel-View</label>			
+			<label index="tx_kiddognews_domain_model_link">Link</label>
+			<label index="tx_kiddognews_domain_model_link.type">Type</label>
+			<label index="tx_kiddognews_domain_model_link.type.page">Page</label>
+			<label index="tx_kiddognews_domain_model_link.type.url">URL</label>
+			<label index="tx_kiddognews_domain_model_link.type.mail">Mail</label>
+			<label index="tx_kiddognews_domain_model_link.link">Link</label>
+		</languageKey>
+	</data>
+</T3locallang>

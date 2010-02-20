@@ -1,0 +1,9 @@
+<f:if condition="{post.tags}">
+<hr/>
+<h3>Tags</h3>
+	<ul>
+		<f:for each="{post.tags}" as="tag">
+			<li>{tag.name}</li>
+		</f:for>
+	</ul>
+</f:if>

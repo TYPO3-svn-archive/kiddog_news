@@ -1,0 +1,9 @@
+<f:if condition="{post.links}">
+<hr/>
+<h3>Links</h3>
+	<ul>
+		<f:for each="{post.links}" as="link">
+			<li>{link.link}</li>
+		</f:for>
+	</ul>
+</f:if>

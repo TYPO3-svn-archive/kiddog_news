@@ -1,0 +1,13 @@
+<f:if condition="{post.relatedPosts}">
+	<h3>RelatedPosts:</h3> 
+	<ul>
+		<f:for each="{post.relatedPosts}" as="relatedPost">
+			<li>
+				<f:format.date>{relatedPost.date}</f:format.date>
+				<f:link.action arguments="{post:relatedPost}" action="showSingle" controller="Post">
+					{relatedPost.title}
+				</f:link.action>	
+			</li>
+		</f:for>
+	</ul>
+</f:if>

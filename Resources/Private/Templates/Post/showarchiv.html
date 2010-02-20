@@ -1,0 +1,32 @@
+<f:layout name="default" />
+
+<f:section name="content">
+	<div class="tx_kiddognews-post-showarchiv">
+		<ul>
+		<f:for each="{posts}" as="post">
+			<li>
+				<f:render partial="postFeEditingMenu" arguments="{post:post}"/>
+				<div class="tx_kiddognews-post-showarchiv-post">
+					<f:link.action arguments="{post:post}" action="showSingle">
+						<h2>{post.title}</h2>
+					</f:link.action>
+					<f:format.date>{post.date}</f:format.date>							
+					<f:if condition="{post.teaser}">
+						<f:then>
+							<p>
+								{post.teaser}
+							</p>					
+						</f:then>
+						<f:else>
+							<p>
+								<f:format.crop maxCharacters="100">{post.post}</f:format.crop>							
+							</p>					
+						</f:else>
+					</f:if>
+					<f:link.action arguments="{post:post}" action="showSingle" controller="Post">show</f:link.action>
+				</div>
+			</li>
+		</f:for>
+		</ul>
+	</div>
+</f:section>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+	  	<title>Kiddog - News</title>
+  		<link>http://www.myweblog.ch</link>
+      	<description>Demo-Weblog for the TYPO3-Extension "kiddog-news"</description>
+      	<copyright>2009 GreenBanana .open .web .business</copyright>
+      	<language>de-ch</language>
+      	<managingEditor>info@greenbanan.ch</managingEditor>
+      	<webMaster>info@greenbanan.ch</webMaster>
+		
+		<f:for each="{posts}" as="post">			
+			<item>
+				<title>{post.title}</title>
+				<link>http://www.myweblog.ch</link>				
+				<f:if condition="{post.teaser}">
+					<f:then>
+						<description>
+							{post.teaser}
+						</description>				
+					</f:then>
+					<f:else>
+						<description>
+							<f:format.crop maxCharacters="300">{post.post}</f:format.crop>							
+						</description>				
+					</f:else>
+				</f:if>
+				<pubDate><f:format.date format="D, d M Y">{post.date}</f:format.date></pubDate>
+				<lastBuildDate><f:format.date format="D, d M Y">{post.tstamp}</f:format.date></lastBuildDate>
+			</item>		
+		</f:for>
+		
+	</channel>
+</rss>

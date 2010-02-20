@@ -1,0 +1,9 @@
+<f:if condition="{post.files}">
+<hr/>
+<h3>Files</h3>
+	<ul>
+		<f:for each="{post.files}" as="file">
+			<li><f:link.external uri="uploads/tx_kiddognews/{file.file}" target="_blank">{file.title}</f:link.external></li>
+		</f:for>
+	</ul>
+</f:if>

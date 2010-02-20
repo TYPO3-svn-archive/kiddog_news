@@ -1,0 +1,68 @@
+<ul>
+    <f:for each="{allCategories}" as="catItem">
+        <f:if condition="{catItem.uid}=={rootCategorie}">
+            <li>
+                <f:form.checkbox name="category" value="{catItem}" />
+				<f:form.radio name="category" value="{catItem}" checked="{category.foreignUid}" />{catItem.name}
+                <f:link.action action="edit" controller="Category" arguments="{category:catItem}">
+                    <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="Edit Category"/>
+                </f:link.action>
+                <f:link.action action="delete" controller="Category" arguments="{category:catItem}">
+                    <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="Delete Category"/>
+                </f:link.action>
+            </li>
+            <ul>
+                <f:for each="{catItem.subCategories}" as="catItem2">
+                    <li>
+                        <f:form.checkbox name="category" value="{catItem2}" /><f:form.radio name="category" value="{catItem2}" />{catItem2.name}
+                        <f:link.action action="edit" controller="Category" arguments="{category:catItem2}">
+                            <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="Edit Category"/>
+                        </f:link.action>
+                        <f:link.action action="delete" controller="Category" arguments="{category:catItem2}">
+                            <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="Delete Category"/>
+                        </f:link.action>
+                    </li>
+                    <ul>
+                        <f:for each="{catItem2.subCategories}" as="catItem3">
+                            <li>
+                                <f:form.checkbox name="category" value="{catItem3}" /><f:form.radio name="category" value="{catItem3}" />{catItem3.name}
+                                <f:link.action action="edit" controller="Category" arguments="{category:catItem3}">
+                                    <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="Edit Category"/>
+                                </f:link.action>
+                                <f:link.action action="delete" controller="Category" arguments="{category:catItem3}">
+                                    <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="Delete Category"/>
+                                </f:link.action>
+                            </li>
+                            <ul>
+                                <f:for each="{catItem3.subCategories}" as="catItem4">
+                                    <li>
+                                        <f:form.checkbox name="category" value="{catItem4}" /><f:form.radio name="category" value="{catItem4}" />{catItem4.name}
+                                        <f:link.action action="edit" controller="Category" arguments="{category:catItem4}">
+                                            <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="Edit Category"/>
+                                        </f:link.action>
+                                        <f:link.action action="delete" controller="Category" arguments="{category:catItem4}">
+                                            <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="Delete Category"/>
+                                        </f:link.action>
+                                    </li>
+                                    <ul>
+                                        <f:for each="{catItem4.subCategories}" as="catItem5">
+                                            <li>
+                                                <f:form.checkbox name="category" value="{catItem5}" /><f:form.radio name="category" value="{catItem5}" />{catItem5.name}
+                                                <f:link.action action="edit" controller="Category" arguments="{category:catItem5}">
+                                                    <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="Edit Category"/>
+                                                </f:link.action>
+                                                <f:link.action action="delete" controller="Category" arguments="{category:catItem5}">
+                                                    <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="Delete Category"/>
+                                                </f:link.action>
+                                            </li>
+                                        </f:for>
+                                    </ul>
+                                </f:for>
+                            </ul>
+                        </f:for>
+                    </ul>
+                </f:for>
+            </ul>
+        </f:if>
+    </f:for>
+</ul>

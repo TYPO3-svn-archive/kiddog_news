@@ -1,0 +1,82 @@
+plugin.tx_kiddognews{
+	settings {
+		# Frontend usergroup who can edit posts, comments, links and files.
+		fe_usergroup.admin = 1
+		
+		# Time who the posts will archived (default: 30days)
+		time.archiv = 1000000
+		
+		# Root-Category
+		category.root = 1
+	}
+	
+	view {
+		templateRootPath	= EXT:kiddog_news/Resources/Private/Templates/
+		partialRootPath 	= EXT:kiddog_news/Resources/Private/Partials/
+		layoutRootPath 		= EXT:kiddog_news/Resources/Private/Layouts/
+	}
+	
+	persistence {
+		storagePid = 6
+	}
+
+	_CSS_DEFAULT_STYLE (
+		.tx_kiddognews-post-edit-comment-menu,
+		.tx_kiddognews-post-postFeEditingMenu{
+			background:#CDCDCD;
+			text-align:right;
+			padding:4px 0 0 0;
+		}
+		
+		.tx_kiddognews-post-edit-comment-menu li,
+		.tx_kiddognews-post-postFeEditingMenu li{
+			display: inline;
+			list-style-type: none;
+		}
+		
+		.tx_kiddognews-post-showlist  ul li,
+		.tx_kiddognews-post-showlatest  ul li,
+		.tx_kiddognews-post-showarchiv  ul li{
+			border:1px solid #cccccc;
+			margin:4px;
+		}	
+		
+		.tx_kiddognews-post-showlist-post,
+		.tx_kiddognews-post-showlatest-post,
+		.tx_kiddognews-post-showarchiv-post{
+			padding: 10px;
+		}
+	)
+	
+}
+
+[globalVar = GP:tx_kiddognews_pi1|action = showRSS]
+page = PAGE
+page {
+	10 = USER
+	10 {
+		userFunc = tx_extbase_dispatcher->dispatch
+		pluginName = Pi1
+		extensionName = KiddogNews
+		controller = Post
+		switchableControllerActions {
+			1 {
+				controller 	= Post
+				actions		= showRSS
+			}
+		}
+		action = showRSS
+		
+		settings 		=< plugin.tx_kiddognews.settings
+		persistence             =< plugin.tx_kiddognews.persistence
+		view 			=< plugin.tx_kiddognews.view
+	}
+
+	config {
+		disableAllHeaderCode = 1
+		additionalHeaders = Content-type:application/xml
+		xhtml_cleaning = 0
+		admPanel = 0
+		}
+}
+[END]

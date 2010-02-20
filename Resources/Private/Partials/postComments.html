@@ -1,0 +1,49 @@
+{namespace kiddogViewHelper=Tx_KiddogNews_ViewHelpers}
+<f:if condition="{post.comments}">
+	<h3>Comments:</h3> 
+	<f:for each="{post.comments}" as="comment">
+		<div>
+			<div style="background:grey; color:#fff; padding:3px">
+				<f:format.date>{comment.date}</f:format.date>
+				|&nbsp;{comment.name}
+				<f:if condition="{comment.eMail}">
+					|&nbsp;<f:link.email email="{comment.eMail}" />
+				</f:if>
+				<f:if condition="{comment.website}">
+					|&nbsp;<f:link.external uri="{comment.website}" target="_blank">{comment.website}</f:link.external>
+				</f:if>
+            </div>
+					
+            <div class="subcolumns">
+                <div class="c25l">
+                    <kiddogViewHelper:gravatar emailAddress="{comment.eMail}" size="40" defaultImageUri="someDefaultImage" />
+                </div>
+                <div class="c75r">
+                    {comment.comment} 
+                </div>
+            </div>
+         </div>
+	</f:for>
+</f:if>
+
+<h4>New Comment</h4>
+<f:form name="newComment" method="post" controller="Comment" action="create" object="{newComment}" arguments="{post:post}">
+	<f:form.errors for="newComment">
+		<div class="error">
+			<strong>{error.propertyName}</strong>: <f:for each="{error.errors}" as="errorDetail">{errorDetail.message}</f:for>
+		</div>
+	</f:form.errors>
+	<label for="author">name <span class="required">(required)</span></label><br />
+	<f:form.textbox id="name" property="name" />
+	<br />
+	<label for="email">email <span class="required">(required)</span></label><br />
+	<f:form.textbox id="email" property="eMail" />
+	<br />
+	<label for="email">website <span class="required">(required)</span></label><br />
+	<f:form.textbox id="website" property="website" />
+	<br />	
+	<label for="text">message <span class="required">(required)</span></label><br />
+	<f:form.textarea id="comment" property="comment" rows="6" cols="46"/>
+	<br />
+	<f:form.submit class="submit" value="Submit"/>
+</f:form>

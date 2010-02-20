@@ -1,0 +1,83 @@
+<f:layout name="default" />
+<f:section name="content">
+    <div class="tx_kiddognews-post-edit">
+        <h4>Edit Post</h4>
+        <f:form method="post" controller="Post" action="update" name="editPost" object="{post}">
+            <label for="type">
+                Type
+            </label>
+            <f:form.select property="type" options="{type}" optionValueField="uid" optionLabelField="label" />
+            <div>
+                <label for="author">
+                    Author
+                </label>
+                <f:form.textbox property="author" />
+            </div>
+            <div>
+                <label for="date">
+                    Date
+                </label>
+                <f:form.textbox property="date" value="{date}" />
+            </div>
+            <div>
+                <label for="title">
+                    Title <span class="required">(required)</span>
+                </label>
+                <f:form.textbox property="title" />
+            </div>
+            <div>
+                <label for="post">
+                    Content <span class="required">(required)</span>
+                </label>
+                <f:form.textarea property="post" rows="8" cols="46" />
+            </div><f:form.submit class="submit" value="Submit"/>
+        </f:form>
+    </div>
+	
+    {namespace kiddogViewHelper=Tx_KiddogNews_ViewHelpers}
+    <f:if condition="{post.comments}">
+        <h3>Comments:</h3>
+        <f:for each="{post.comments}" as="comment">
+            <div class="tx_kiddognews-post-postFeEditingMenu">
+                <label>
+                    Frontend-Editing:
+                </label>
+                <ul>
+                    <li>
+                        <f:link.action action="edit" controller="Comment" arguments="{comment:comment, post:post}">
+                            <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="edit Comment"/>
+                        </f:link.action>
+                    </li>
+                    <li>
+                        <f:link.action action="delete" controller="Comment" arguments="{comment:comment}">
+                            <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="delete Comment"/>
+                        </f:link.action>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div style="background:grey; color:#fff; padding:3px">
+                    <f:format.date>{comment.date}</f:format.date>
+                    |&nbsp;{comment.name}
+                    <f:if condition="{comment.eMail}">
+                        |&nbsp;<f:link.email email="{comment.eMail}" />
+                    </f:if>
+                    <f:if condition="{comment.website}">
+                        |&nbsp;
+                        <f:link.external uri="{comment.website}" target="_blank">
+                            {comment.website}
+                        </f:link.external>
+                    </f:if>
+                </div>
+                <div class="subcolumns">
+                    <div class="c25l">
+                        <kiddogViewHelper:gravatar emailAddress="{comment.eMail}" size="40" defaultImageUri="" />
+                    </div>
+                    <div class="c75r">
+                        <f:format.crop maxCharacters="200">{comment.comment}</f:format.crop> 
+                    </div>
+                </div>
+            </div>
+        </f:for>
+    </f:if>
+    </f:section>
