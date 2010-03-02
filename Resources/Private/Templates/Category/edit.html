@@ -2,7 +2,7 @@
 <f:section name="content">
     <h1> Root-Tree</h1>
     <f:form method="post" controller="Category" action="update" name="allCategory" object="{category}">
-    <f:render partial="categoryMenuTree" arguments="{allCategories:allCategories,rootCategorie:rootCategorie,category:category}"/>
+    <f:render partial="categoryMenuTree" arguments="{allCategories:allCategories,rootCategorie:rootCategorie}"/>
 	<div>
 	    <label for="title">
 	        Title <span class="required">(required)</span>

@@ -1,3 +1,4 @@
+# Plugin configuration
 plugin.tx_kiddognews{
 	settings {
 		# Frontend usergroup who can edit posts, comments, links and files.
@@ -47,7 +48,6 @@ plugin.tx_kiddognews{
 			padding: 10px;
 		}
 	)
-	
 }
 
 [globalVar = GP:tx_kiddognews_pi1|action = showRSS]
@@ -68,7 +68,7 @@ page {
 		action = showRSS
 		
 		settings 		=< plugin.tx_kiddognews.settings
-		persistence             =< plugin.tx_kiddognews.persistence
+		persistence     =< plugin.tx_kiddognews.persistence
 		view 			=< plugin.tx_kiddognews.view
 	}
 
@@ -80,3 +80,18 @@ page {
 		}
 }
 [END]
+
+# Module configuration
+module.tx_kiddognews < plugin.tx_kiddognews 
+module.tx_kiddognews{
+	view {
+
+	}
+	settings{
+		persistence.storagePid < plugin.tx_kiddognews.persistence.storagePid
+	}
+	
+	persistence {
+
+	}	
+}

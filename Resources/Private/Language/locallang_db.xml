@@ -33,6 +33,7 @@
 			<label index="tx_kiddognews_domain_model_category.description">Description</label>
 			<label index="tx_kiddognews_domain_model_category.sub_categories">Sub-Categorie(s)</label>
 			<label index="tx_kiddognews_domain_model_category.image">Image</label>
+			<label index="tx_kiddognews_domain_model_category.foreign_uid">Parent Category</label>
 			<label index="tx_kiddognews_domain_model_file">File</label>
 			<label index="tx_kiddognews_domain_model_file.title">Title</label>
 			<label index="tx_kiddognews_domain_model_file.file">File</label>

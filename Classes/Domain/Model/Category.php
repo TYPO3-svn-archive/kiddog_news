@@ -45,11 +45,6 @@ class Tx_KiddogNews_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstra
 	protected $uid;
 	
 	/**
-	 * @var integer
-	 */	
-	protected $foreignUid;	
-	
-	/**
 	 * @var string
 	 */	
 	protected $name;	
@@ -70,19 +65,19 @@ class Tx_KiddogNews_Domain_Model_Category extends Tx_Extbase_DomainObject_Abstra
 	 */
 	protected $image;
 
-	/**
-	 * @return the $foreignUid
-	 */
-	public function getForeignUid() {
-		return $this->foreignUid;
-	}
-
-	/**
-	 * @param $foreignUid the $foreignUid to set
-	 */
-	public function setForeignUid($foreignUid) {
-		$this->foreignUid = $foreignUid;
-	}	
+//	/**
+//	 * @return the $foreignUid
+//	 */
+//	public function getForeignUid() {
+//		return $this->foreignUid;
+//	}
+//
+//	/**
+//	 * @param $foreignUid the $foreignUid to set
+//	 */
+//	public function setForeignUid($foreignUid) {
+//		$this->foreignUid = $foreignUid;
+//	}	
 	
 	/**
 	 * @return the $name

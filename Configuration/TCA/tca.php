@@ -478,10 +478,10 @@ $TCA['tx_kiddognews_domain_model_comment'] = array(
 $TCA['tx_kiddognews_domain_model_category'] = array(
 	'ctrl' => $TCA['tx_kiddognews_domain_model_category']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'name,description,image,sub_categories'
+		'showRecordFieldList' => 'name,description,image,foreign_uid,sub_categories'
 	),
 	'types' => array(
-		'1' => array('showitem' => 'name,description,image,sub_categories')
+		'1' => array('showitem' => 'name,description,image,foreign_uid,sub_categories')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -564,7 +564,38 @@ $TCA['tx_kiddognews_domain_model_category'] = array(
                 ),
             )
         ),	
+        
+		'foreign_uid' => Array (
+			'exclude' => 1,
+			'l10n_mode' => 'exclude',
+			'label' => 'LLL:EXT:kiddog_news/Resources/Private/Language/locallang_db.xml:tx_kiddognews_domain_model_category.foreign_uid',
+			'config' => Array (
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'tx_kiddognews_domain_model_category',
+				'foreign_table' => 'tx_kiddognews_domain_model_category',
+        		'size' => '1',
+				'autoSizeMax' => 1,
+				'maxitems' => '1',
+				'minitems' => '0',
+				'show_thumbs' => '1',
+				'wizards' => array(
+					'suggest' => array(
+						'type' => 'suggest'
+					)
+				)
+			)
+		),	        
 
+		/**
+		 * Workaround for the possibility to define parent- and subcategories on the same interface
+		 */
+		'foreign_table' => array (
+			'config' => array(
+				'default'=>'tx_kiddognews_domain_model_category'
+			)
+		),
+		
 		'sub_categories' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:kiddog_news/Resources/Private/Language/locallang_db.xml:tx_kiddognews_domain_model_category.sub_categories',

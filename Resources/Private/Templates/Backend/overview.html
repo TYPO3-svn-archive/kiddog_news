@@ -1,0 +1,70 @@
+<f:layout name="backend" />
+<f:section name="content">
+	<table style="background:none; border:1px solid #ccc" width="99%" cellpadding="3" cellspacing="0">
+	    <tr>
+	        <td width="33%" style="background:none; border-right:1px solid #ccc">
+	            <h2>Posts</h2>
+	            <div>
+	                <f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_post][{f:post.post}]=new" icon="new_el" title="Create new Post" />
+	            </div>
+	        </td>
+	        <td width="33%" style="background:none; border-right:1px solid #ccc">
+	            <h2>Comments</h2>
+	        </td>
+	        <td width="33%">
+	            <h2>Categories</h2>
+	            <div>
+	            	<a onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&amp;edit[tx_kiddognews_domain_model_post][6]=new'; return false;" href="#"><img width="16" height="16" alt="" title="New record" src="sysext/t3skin/icons/gfx/new_el.gif"></a>
+	                <f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_category][{f:category.category}]=new" icon="new_el" title="Create new Category" />
+	            </div>
+	        </td>
+	    </tr>
+        <tr>
+            <td style="background:none; border-right:1px solid #ccc">
+                <!-- POST (start) -->
+                <f:for each="{posts}" as="post">
+                    <div>
+                    	<f:format.date>{post.date}</f:format.date>
+                        {post.title}
+                        <f:if condition="{post.teaser}">
+                            <f:then>
+                                <f:format.crop maxCharacters="50">
+                                    {post.teaser}
+                                </f:format.crop>
+                            </f:then>
+                            <f:else>
+                                <f:format.crop maxCharacters="50">
+                                    {post.post}
+                                </f:format.crop>
+                            </f:else>
+                        </f:if>
+						<f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_post][{post.uid}]=edit" icon="edit2" title="Edit" />						
+                    </div>
+                </f:for>
+                <!-- POST (end) -->
+            </td>
+            <td style="background:none; border-right:1px solid #ccc">
+                <!-- COMMENTS (start) -->
+                <f:for each="{comments}" as="comment">
+                    <div>
+                        <f:format.crop maxCharacters="50">
+                            {comment.comment}
+                        </f:format.crop>
+                        <f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_comment][{comment.uid}]=edit" icon="edit2" title="Edit" />
+                    </div>
+                </f:for>
+                <!-- COMMENTS (end) -->
+            </td>
+            <td>
+                <!-- CATEGORY (start) -->
+				<f:form method="get" action="alt_doc.php">				
+    				<f:render partial="categoryMenuTree" arguments="{allCategories:allCategories,rootCategorie:rootCategorie}"/>
+					<f:form.submit class="submit" value="Edit Category"/>
+				</f:form>
+                <!-- CATEGORY (end) -->
+            </td>
+        </tr>
+    </table>
+	
+	{link}
+</f:section>

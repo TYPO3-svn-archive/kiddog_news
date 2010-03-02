@@ -1,6 +1,33 @@
 <?php
 if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
+/** ********************************************************************************** 
+ * Backen-Modul
+ ********************************************************************************** **/
+if (TYPO3_MODE === 'BE')	{
+	/**
+	* Registers a Backend Module
+	*/
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'web',					// Make module a submodule of 'web'
+		'tx_kiddognews_m1',		// Submodule key
+		'',						// Position
+		array(																			// An array holding the controller-action-combinations that are accessible
+			'Backend' => 'index,overview',
+			),
+		array(
+			'access' => 'admin',
+			'icon'   => 'EXT:kiddog_news/ext_icon.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+		)
+	);
+}
+
+/** ********************************************************************************** 
+ * Frontend-Plugin
+ ********************************************************************************** **/
+
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,																	
 	'Pi1',																		

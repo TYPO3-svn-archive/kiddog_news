@@ -49,7 +49,6 @@ class Tx_KiddogNews_Controller_CategoryController extends Tx_Extbase_MVC_Control
 	 */
 	public function initializeAction(){
 		$this->categoryRepository = t3lib_div::makeInstance('Tx_KiddogNews_Domain_Repository_CategoryRepository');
-		t3lib_div::debug('asdf');
 	}
 		
 	/**
