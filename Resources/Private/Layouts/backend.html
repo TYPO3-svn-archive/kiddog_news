@@ -26,8 +26,10 @@
 		<div id="typo3-docbody">
 			<div id="typo3-inner-docbody">
 				<f:renderFlashMessages class="tx-extbase-flash-message" />
-				<f:render section="content" />
-				&copy; <a href="http://www.greenbanana.ch" target="_blank">GreenBanana .open .web .business</a>
+				<f:be.container loadExtJs="true" enableExtJsDebug="true" addCssFile="{f:uri.resource(path:'Styles/backend-main.css')}" addJsFile="{f:uri.resource(path:'JavaScripts/backend-main.js')}">
+					<f:render section="content" />
+					&copy; <a href="http://www.greenbanana.ch" target="_blank">GreenBanana .open .web .business</a>
+				</f:be.container>
 			</div>
 		</div>
 	</div>

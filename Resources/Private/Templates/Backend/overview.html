@@ -5,7 +5,8 @@
 	        <td width="33%" style="background:none; border-right:1px solid #ccc">
 	            <h2>Posts</h2>
 	            <div>
-	                <f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_post][{f:post.post}]=new" icon="new_el" title="Create new Post" />
+					<a onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&amp;edit[tx_kiddognews_domain_model_post][6]=new'; return false;" href="#"><img width="16" height="16" alt="" title="New post" src="sysext/t3skin/icons/gfx/new_el.gif"></a>	            	
+	                <!-- <f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_post][{f:post.post}]=new" icon="new_el" title="Create new Post" /> -->
 	            </div>
 	        </td>
 	        <td width="33%" style="background:none; border-right:1px solid #ccc">
@@ -14,8 +15,8 @@
 	        <td width="33%">
 	            <h2>Categories</h2>
 	            <div>
-	            	<a onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&amp;edit[tx_kiddognews_domain_model_post][6]=new'; return false;" href="#"><img width="16" height="16" alt="" title="New record" src="sysext/t3skin/icons/gfx/new_el.gif"></a>
-	                <f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_category][{f:category.category}]=new" icon="new_el" title="Create new Category" />
+	            	<a onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&amp;edit[tx_kiddognews_domain_model_category][6]=new'; return false;" href="#"><img width="16" height="16" alt="" title="New category" src="sysext/t3skin/icons/gfx/new_el.gif"></a>	            	
+	                <!-- <f:be.buttons.icon uri="alt_doc.php?returnUrl=mod.php%3FM%3Dweb_KiddogNewsTxKiddognewsM1%26tx_kiddognews_web_kiddognewstxkiddognewsm1[action]%3Doverview%26tx_kiddognews_web_kiddognewstxkiddognewsm1[controller]%3DBackend&edit[tx_kiddognews_domain_model_category][{f:category.category}]=new" icon="new_el" title="Create new Category" /> -->
 	            </div>
 	        </td>
 	    </tr>
@@ -47,6 +48,7 @@
                 <!-- COMMENTS (start) -->
                 <f:for each="{comments}" as="comment">
                     <div>
+                    	<f:format.date>{comment.date}</f:format.date>
                         <f:format.crop maxCharacters="50">
                             {comment.comment}
                         </f:format.crop>

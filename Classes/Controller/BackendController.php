@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * The Backend controller for the ZALOM package
+ * The Backend controller for the KiddogNews package
  *
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
