@@ -1,7 +1,4 @@
 <?php
-ini_set("display_errors", true);
-ini_set("html_errors", true);
-
 $node = "";
 $out = "";
 
@@ -12,74 +9,45 @@ if (isset($_REQUEST["node"])) {
 switch ($node) {
 
 	case "project":
-		$out = GetProjectTree();
+		$out = getCategoriesByParent();
 		break;
-	case "datasources":
-		$out = GetDataSources();
-		break;
-	case "datasets":
-		$out = GetDatasets();
-		break;
-	case "execreports":
-		$out = GetExecReports();
-		break;
-	case "reports":
-		$out = GetReports();
-		break;
-	
+	default:
+		$out = getCategoriesByParent($node);
 
 }
 echo utf8_encode($out);
 
+function getCategoriesByParent($node=1) {
+	$con = mysql_connect("localhost","root","");
+	if (!$con){
+  		die('Could not connect: ' . mysql_error());
+  	}
 
-function GetProjectTree() {
-    
-	$tree = "[{\"text\":\"Data Sources\",\"id\":\"datasources\",\"iconCls\":\"folder\",\"draggable\":false},";
-	$tree .= "{\"text\":\"Datasets\",\"id\":\"datasets\",\"iconCls\":\"folder\",\"draggable\":false},";	
-	$tree .= "{\"text\":\"Executive Reports\",\"id\":\"execreports\",\"iconCls\":\"folder\",\"draggable\":false},";	
-	$tree .= "{\"text\":\"Reports\",\"id\":\"reports\",\"iconCls\":\"folder\",\"draggable\":false}]";
+	mysql_select_db("T3debug", $con);
+
+	$result = mysql_query(
+		"SELECT name, uid
+		FROM tx_kiddognews_domain_model_category
+		WHERE foreign_uid =".$node
+	);
+
+	$tree = '[';
+	while($row = mysql_fetch_array($result)){
+		$tree .= '{"text":"'.$row['name'].'","id":"'.$row['uid'].'","iconCls":"folder","draggable":false},';
+  	}
+	$tree .= ']';
+  	mysql_close($con);
+
+	/**
+	 * 	[
+	 *	{"text":"Data Sources","id":"datasources","iconCls":"folder","draggable":false},
+	 *	{"text":"Datasets","id":"datasets","iconCls":"folder","draggable":false},
+	 *	{"text":"Executive Reports","id":"execreports","iconCls":"folder","draggable":false},
+	 *	{"text":"Reports","id":"reports","iconCls":"folder","draggable":false}
+	 *	]
+	 */
 	
 	return $tree; 
 }
-
-function GetDataSources() {
-    
-	$datasrc = "[{\"text\":\"Time and Billing System\",\"id\":\"timeandbilling\",\"leaf\":true,\"iconCls\":\"datasource\"},";
-	$datasrc .= "{\"text\":\"Employee Management System\",\"id\":\"emplmanagement\",\"leaf\":true,\"iconCls\":\"datasource\"}]";	
-	
-	return $datasrc; 
-}
-
-function GetDatasets() {
-    
-	$datasets = "[{\"text\":\"Hours Worked\",\"id\":\"hrsworked\",\"leaf\":true,\"iconCls\":\"dataset\"},";
-	$datasets .= "{\"text\":\"Hours Billed\",\"id\":\"hrsbilled\",\"leaf\":true,\"iconCls\":\"dataset\"},";	
-	$datasets .= "{\"text\":\"Receipts\",\"id\":\"receipts\",\"leaf\":true,\"iconCls\":\"dataset\"}]";
-	
-	return $datasets; 
-}
-
-function GetExecReports() {
-    
-	$reports = "[{\"text\":\"Profitability\",\"id\":\"profitability\",\"leaf\":true,\"iconCls\":\"report\"},";
-	$reports .= "{\"text\":\"Firm-Level Trends\",\"id\":\"trends\",\"leaf\":true,\"iconCls\":\"report\"}]";
-	
-	return $reports; 
-}
-
-function GetReports() {
-    
-	$reports = "[{\"text\":\"Work In Progress\",\"id\":\"workinprogress\",\"leaf\":true,\"iconCls\":\"report\"},";
-	$reports .= "{\"text\":\"Utilization\",\"id\":\"utilization\",\"leaf\":true,\"iconCls\":\"report\"}]";
-	
-	return $reports; 
-}
-
-
-
-
-
-
-
 
 ?>
