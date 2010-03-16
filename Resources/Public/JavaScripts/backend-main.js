@@ -27,12 +27,9 @@ Ext.onReady(function() {
 	tree.getRootNode().expand(true);
 
 	/**
-	 * Context-Menu
+	 * Node-Klick-Function
 	 */
 	tree.on('click', alertID);
-	tree.on('contextmenu', prepareMenu);
-
-	var sm = tree.getSelectionModel();
 
 	function alertID(node) {
 		Ext.Ajax.request({
@@ -40,20 +37,25 @@ Ext.onReady(function() {
 	       method: 'POST',
 	       params :{'node':'getCategoryInfoByUid','category':node.id},
 	       
-	       success: function(response, opts) {
-	    	   var obj = Ext.decode(response.responseText);
-	    	   console.dir(obj);
-	           
-	    	   Ext.Msg.alert('Info', 'response.status: '+ response.status);
+	       success: function (result, request) {
+	    	   var jsonData = Ext.util.JSON.decode(result.responseText);
+	    	   Ext.Msg.alert('success', jsonData[0]['name']);
 	       },
+	       
 	       
 	       failure: function(result, request) {
 	    	   var jsonData = Ext.util.JSON.decode(result.responseText);
-	           var resultMessage = jsonData.data.result;
-	           Ext.Msg.alert('Info', 'failure: '+resultMessage);
+	    	   Ext.Msg.alert('failure', jsonData[0]['name']);
 	       }
 	   });
 	};
+	
+	/**
+	 * Context-Menu
+	 */
+	
+	tree.on('contextmenu', prepareMenu);
+	var sm = tree.getSelectionModel();	
 	
 	var Menu = new Ext.menu.Menu( {
 		id : 'menu',
@@ -84,8 +86,24 @@ Ext.onReady(function() {
 		Ext.Msg.alert('New', 'New Node')
 	}
 	
+	// TODO: Node dynamisch uebergeben editNode(node)
 	function editNode() {
-		Ext.Msg.alert('Edit', 'Edit Node')
+		Ext.Ajax.request({
+		       url : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
+		       method: 'POST',
+		       params :{'node':'getCategoryInfoByUid','category':2},
+		       
+		       success: function (result, request) {
+		    	   var jsonData = Ext.util.JSON.decode(result.responseText);
+		    	   // FORM
+		       },
+		       
+		       
+		       failure: function(result, request) {
+		    	   var jsonData = Ext.util.JSON.decode(result.responseText);
+		    	   Ext.Msg.alert('edit', jsonData[0]['name']);
+		       }
+		   });
 	}	
 	
 	function deleteNode() {
