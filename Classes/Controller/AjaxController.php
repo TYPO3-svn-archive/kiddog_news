@@ -69,14 +69,14 @@ function getCategoryInfoByUid($uid) {
 	mysql_select_db("T3debug", $con);
 
 	$result = mysql_query(
-		"SELECT name, uid
+		"SELECT name, uid, description, foreign_uid
 		FROM tx_kiddognews_domain_model_category
 		WHERE uid =".$uid
 	);
 
 	$categoryInfos = '[';
 	while($row = mysql_fetch_array($result)){
-		$categoryInfos .= '{"name":"'.$row['name'].'","id":"'.$row['uid'].'"}';
+		$categoryInfos .= '{"name":"'.$row['name'].'","id":"'.$row['uid'].'","description":"'.$row['description'].'","foreignUid":"'.$row['foreign_uid'].'"}';
   	}
 	$categoryInfos .= ']';
   	mysql_close($con);	

@@ -95,7 +95,62 @@ Ext.onReady(function() {
 		       
 		       success: function (result, request) {
 		    	   var jsonData = Ext.util.JSON.decode(result.responseText);
-		    	   // FORM
+		    	   
+		    	   // JavaScript Form
+		    	   // title, description, image, parent_category
+		    	   var form = new Ext.form.FormPanel({
+		    	        baseCls: 'x-plain',
+		    	        labelWidth: 55,
+		    	        url:'save-form.php',
+		    	        defaultType: 'textfield',
+
+		    	        items: 
+		    	        [{
+		    	            fieldLabel: 'Title',
+		    	            name: 'title',
+		    	            anchor:'100%',
+		    	            value:jsonData[0]['name']
+		    	        },{
+		    	            fieldLabel: 'Image',
+		    	            name: 'image',
+		    	            anchor:'100%',
+		    	            value:jsonData[0]['image']
+		    	        },{
+		    	            fieldLabel: 'Parent Category',
+		    	            name: 'foreignUid',
+		    	            anchor: '100%',
+		    	            value:jsonData[0]['foreignUid']
+		    	        },{
+		    	        	fieldLabel: 'Description',
+		    	            xtype: 'textarea',
+		    	            hideLabel: true,
+		    	            name: 'description',
+		    	            value:jsonData[0]['description'],
+		    	            anchor: '100% -53'  // anchor width by percentage and height by raw adjustment
+		    	        }]
+		    	    });
+
+		    	    var window = new Ext.Window({
+		    	        title: 'Resize Me',
+		    	        width: 500,
+		    	        height:300,
+		    	        minWidth: 300,
+		    	        minHeight: 200,
+		    	        layout: 'fit',
+		    	        plain:true,
+		    	        bodyStyle:'padding:5px;',
+		    	        buttonAlign:'center',
+		    	        items: form,
+
+		    	        buttons: [{
+		    	            text: 'Send'
+		    	        },{
+		    	            text: 'Cancel'
+		    	        }]
+		    	    });
+
+		    	    window.show();
+
 		       },
 		       
 		       
