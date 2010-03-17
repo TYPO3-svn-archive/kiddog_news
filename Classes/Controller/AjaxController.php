@@ -3,10 +3,15 @@ $node = "";
 
 if (isset($_REQUEST["node"])) {
 	$node = $_REQUEST["node"];
+}else{
+	var_dump($_REQUEST);	
 }
 
 switch ($node) {
-	case "getCategoryInfoByUid":
+	case "setCategoryByUid";
+		setCategoryByUid($_REQUEST["TxKiddognewsDomainModelCategory"]);
+		break;
+	case "getCategoryByUid":
 			getCategoryInfoByUid($_REQUEST["category"]);
 		break;	
 	case "getCategoriesByParent":
@@ -36,11 +41,11 @@ function getCategoriesByParent($node=1) {
 		WHERE foreign_uid =".$node
 	);
 
-	$tree = '[';
+	$categories = '[';
 	while($row = mysql_fetch_array($result)){
-		$tree .= '{"text":"'.$row['name'].'","id":"'.$row['uid'].'","iconCls":"folder","draggable":false},';
+		$categories .= '{"text":"'.$row['name'].'","id":"'.$row['uid'].'","iconCls":"folder","draggable":false},';
   	}
-	$tree .= ']';
+	$categories .= ']';
   	mysql_close($con);
 
 	/**
@@ -52,7 +57,7 @@ function getCategoriesByParent($node=1) {
 	 *	]
 	 */
 	
-	echo utf8_encode($tree);
+	echo utf8_encode($categories);
 }
 
 
@@ -60,7 +65,7 @@ function getCategoriesByParent($node=1) {
  * Get data of a given category-uid
  * @return unknown_type
  */
-function getCategoryInfoByUid($uid) {
+function getCategoryInfoByUid($uid){
 	$con = mysql_connect("localhost","root","");
 	if (!$con){
   		die('Could not connect: ' . mysql_error());
@@ -74,13 +79,37 @@ function getCategoryInfoByUid($uid) {
 		WHERE uid =".$uid
 	);
 
-	$categoryInfos = '[';
+	$category = '[';
 	while($row = mysql_fetch_array($result)){
-		$categoryInfos .= '{"name":"'.$row['name'].'","id":"'.$row['uid'].'","description":"'.$row['description'].'","foreignUid":"'.$row['foreign_uid'].'"}';
+		$category .= '{"name":"'.$row['name'].'","uid":"'.$row['uid'].'","description":"'.$row['description'].'","foreignUid":"'.$row['foreign_uid'].'"}';
   	}
-	$categoryInfos .= ']';
+	$category .= ']';
   	mysql_close($con);	
-	echo utf8_encode($categoryInfos);
+	echo utf8_encode($category);
 }
 
+
+/**
+ * 
+ * @param $uid
+ */
+function setCategoryByUid($category){
+	
+	$con = mysql_connect("localhost","root","");
+	if (!$con){
+  		die('Could not connect: ' . mysql_error());
+  	}
+
+	mysql_select_db("T3debug", $con);
+
+	mysql_query(
+		'UPDATE tx_kiddognews_domain_model_category
+		SET name="'.$category['name'].'",
+			description="'.$category['description'].'",
+			foreign_uid="'.$category['foreignUid'].'"
+		WHERE uid='.$category['uid']
+	);	
+	
+  	mysql_close($con);		
+}
 ?>

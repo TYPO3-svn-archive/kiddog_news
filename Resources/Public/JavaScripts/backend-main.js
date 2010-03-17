@@ -35,7 +35,7 @@ Ext.onReady(function() {
 		Ext.Ajax.request({
 	       url : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
 	       method: 'POST',
-	       params :{'node':'getCategoryInfoByUid','category':node.id},
+	       params :{'node':'getCategoryByUid','category':node.id},
 	       
 	       success: function (result, request) {
 	    	   var jsonData = Ext.util.JSON.decode(result.responseText);
@@ -91,7 +91,7 @@ Ext.onReady(function() {
 		Ext.Ajax.request({
 		       url : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
 		       method: 'POST',
-		       params :{'node':'getCategoryInfoByUid','category':2},
+		       params :{'node':'getCategoryByUid','category':2},
 		       
 		       success: function (result, request) {
 		    	   var jsonData = Ext.util.JSON.decode(result.responseText);
@@ -101,37 +101,41 @@ Ext.onReady(function() {
 		    	   var form = new Ext.form.FormPanel({
 		    	        baseCls: 'x-plain',
 		    	        labelWidth: 55,
-		    	        url:'save-form.php',
 		    	        defaultType: 'textfield',
 
 		    	        items: 
 		    	        [{
+		    	            fieldLabel: 'Uid',
+		    	            name: 'TxKiddognewsDomainModelCategory[uid]',
+		    	            anchor:'100%',
+		    	            value:jsonData[0]['uid']
+		    	        },{
 		    	            fieldLabel: 'Title',
-		    	            name: 'title',
+		    	            name: 'TxKiddognewsDomainModelCategory[name]',
 		    	            anchor:'100%',
 		    	            value:jsonData[0]['name']
 		    	        },{
 		    	            fieldLabel: 'Image',
-		    	            name: 'image',
+		    	            name: 'TxKiddognewsDomainModelCategory[image]',
 		    	            anchor:'100%',
 		    	            value:jsonData[0]['image']
 		    	        },{
 		    	            fieldLabel: 'Parent Category',
-		    	            name: 'foreignUid',
+		    	            name: 'TxKiddognewsDomainModelCategory[foreignUid]',
 		    	            anchor: '100%',
 		    	            value:jsonData[0]['foreignUid']
 		    	        },{
 		    	        	fieldLabel: 'Description',
 		    	            xtype: 'textarea',
 		    	            hideLabel: true,
-		    	            name: 'description',
+		    	            name: 'TxKiddognewsDomainModelCategory[description]',
 		    	            value:jsonData[0]['description'],
 		    	            anchor: '100% -53'  // anchor width by percentage and height by raw adjustment
 		    	        }]
 		    	    });
 
 		    	    var window = new Ext.Window({
-		    	        title: 'Resize Me',
+		    	        title: 'Edit Category',
 		    	        width: 500,
 		    	        height:300,
 		    	        minWidth: 300,
@@ -143,14 +147,25 @@ Ext.onReady(function() {
 		    	        items: form,
 
 		    	        buttons: [{
-		    	            text: 'Send'
+		    	            text: 'Save',
+		    	            handler: function(){
+		    	             		form.getForm().submit({
+		    	             	    params :{'node':'setCategoryByUid'},
+		    	        			url : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
+		    	        	        waitMsg: 'Processing Request',
+		    	        	        success: function(loginForm, resp){		    	             	    	
+		    	        				Ext.Msg.alert('Success', 'Category is updated');
+		    	        	        }
+		    	        		});
+		    	        	}		    	            
 		    	        },{
-		    	            text: 'Cancel'
+		    	            text: 'Cancel',
+	                        handler: function(){
+	                        window.hide();
+	                    }		    	            
 		    	        }]
 		    	    });
-
 		    	    window.show();
-
 		       },
 		       
 		       
