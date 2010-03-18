@@ -1,7 +1,8 @@
 Ext.onReady(function() {
-	/**
+	
+	/** ****************************************************************************************************************************
 	 * Category-Tree
-	 */
+	 **************************************************************************************************************************** */	
 	var tree = new Ext.tree.TreePanel(
 			{
 				el : 'tree-reorder',
@@ -14,21 +15,21 @@ Ext.onReady(function() {
 				enableDD : true,
 				containerScroll : true,
 				border : false,
-				dataUrl : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
+				dataUrl : 'ajax.php',
 				root : {
 					nodeType : 'async',
 					text : 'News Categoryies',
 					draggable : false,
-					id : 'getCategoriesByParent'
+					id : 'getCategoriesByParentUid'
 				}
 			});
 
 	tree.render();
 	tree.getRootNode().expand(true);
 
-	/**
+	/** ****************************************************************************************************************************
 	 * Node-Klick-Function
-	 */
+	 **************************************************************************************************************************** */		
 	tree.on('click', alertID);
 
 	function alertID(node) {
@@ -50,10 +51,9 @@ Ext.onReady(function() {
 	   });
 	};
 
-	
-	/**
-	 * Context-Menu
-	 */
+	/** ****************************************************************************************************************************
+	 * Context-Menu from the Category-Tree
+	 **************************************************************************************************************************** */		
 	tree.on('contextmenu', prepareMenu);
 	var sm = tree.getSelectionModel();	
 	
@@ -65,9 +65,9 @@ Ext.onReady(function() {
 			cls : 'newNode',
 			text : 'New category into'
 		}, {
-			id : 'editNode',
-			handler : editNode,
-			cls : 'editNode',
+			id : 'editCategory',
+			handler : editCategory,
+			cls : 'editCategory',
 			text : 'edit'
 		}, {
 			id : 'delete',
@@ -85,16 +85,17 @@ Ext.onReady(function() {
 	function newNode() {
 		Ext.Msg.alert('New', 'New Node')
 	}
-	
-	// TODO: Node dynamisch uebergeben editNode(node)
-	function editNode() {
+
+	/** ****************************************************************************************************************************
+	 * Edit Category
+	 **************************************************************************************************************************** */	
+	function editCategory() {
 		Ext.Ajax.request({
-		       url : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
+		       url : 'ajax.php',
 		       method: 'POST',
-		       params :{'node':'getCategoryByUid','category':2},
-		       
+		       params :{'ajaxID':'Tx_KiddogNews_Controller_AjaxController::getCategoryByUid','tx_kiddognews_ajax[uid]':2},		       
 		       success: function (result, request) {
-		    	   var jsonData = Ext.util.JSON.decode(result.responseText);
+		    	   var jsonData = Ext.util.JSON.decode(result.responseText);					// TODO: Node dynamisch uebergeben editNode(node)
 		    	   
 		    	   // JavaScript Form
 		    	   // title, description, image, parent_category
@@ -106,29 +107,29 @@ Ext.onReady(function() {
 		    	        items: 
 		    	        [{
 		    	            fieldLabel: 'Uid',
-		    	            name: 'TxKiddognewsDomainModelCategory[uid]',
+		    	            name: 'tx_kiddognews_ajax[category][uid]',
 		    	            anchor:'100%',
 		    	            value:jsonData[0]['uid']
 		    	        },{
 		    	            fieldLabel: 'Title',
-		    	            name: 'TxKiddognewsDomainModelCategory[name]',
+		    	            name: 'tx_kiddognews_ajax[category][name]',
 		    	            anchor:'100%',
 		    	            value:jsonData[0]['name']
 		    	        },{
 		    	            fieldLabel: 'Image',
-		    	            name: 'TxKiddognewsDomainModelCategory[image]',
+		    	            name: 'tx_kiddognews_ajax[category][image]',
 		    	            anchor:'100%',
 		    	            value:jsonData[0]['image']
 		    	        },{
 		    	            fieldLabel: 'Parent Category',
-		    	            name: 'TxKiddognewsDomainModelCategory[foreignUid]',
+		    	            name: 'tx_kiddognews_ajax[category][foreignUid]',
 		    	            anchor: '100%',
 		    	            value:jsonData[0]['foreignUid']
 		    	        },{
 		    	        	fieldLabel: 'Description',
 		    	            xtype: 'textarea',
 		    	            hideLabel: true,
-		    	            name: 'TxKiddognewsDomainModelCategory[description]',
+		    	            name: 'tx_kiddognews_ajax[category][description]',
 		    	            value:jsonData[0]['description'],
 		    	            anchor: '100% -53'  // anchor width by percentage and height by raw adjustment
 		    	        }]
@@ -150,8 +151,8 @@ Ext.onReady(function() {
 		    	            text: 'Save',
 		    	            handler: function(){
 		    	             		form.getForm().submit({
-		    	             	    params :{'node':'setCategoryByUid'},
-		    	        			url : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
+		    	             		params :{'ajaxID':'Tx_KiddogNews_Controller_AjaxController::updateCategoryByUid','tx_kiddognews_ajax[uid]':2},			    	             			
+		    	        			url : 'ajax.php',
 		    	        	        waitMsg: 'Processing Request',
 		    	        	        success: function(loginForm, resp){		    	             	    	
 		    	        				Ext.Msg.alert('Success', 'Category is updated');
@@ -176,25 +177,30 @@ Ext.onReady(function() {
 		   });
 	}	
 	
+	
+	/** ****************************************************************************************************************************
+	 * Delete Category
+	 **************************************************************************************************************************** */
+	// TODO: Implement the current categroy uid for: tx_kiddognews_ajax[uid]
+	
 	function deleteNode() {
 		Ext.Ajax.request({
 		       url : 'ajax.php',
 		       method: 'GET',
-		       params :{'ajaxID':'Tx_KiddogNews_Controller_AjaxController::ajaxTestAction'},
+		       params :{ 'ajaxID':'Tx_KiddogNews_Controller_AjaxController::deleteCategoryByUid','tx_kiddognews_ajax[uid]':2},
 		       
 		       success: function (result, request) {
 		    	   // var jsonData = Ext.util.JSON.decode(result.responseText);
 		    	   // Ext.Msg.alert('success', jsonData[0]['name']);
 		    	   Ext.Msg.alert('success','success');
 		       },
-		       
-		       
+		        
 		       failure: function(result, request) {
 		    	   // var jsonData = Ext.util.JSON.decode(result.responseText);
 		    	   // Ext.Msg.alert('failure', jsonData[0]['name']);
 		    	   Ext.Msg.alert('failure', 'failure');
 		       }
-		   });
+		 });
 	}
 
 });

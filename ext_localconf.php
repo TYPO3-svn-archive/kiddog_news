@@ -26,9 +26,19 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 );
 
 /**
- * AJAX
+ * Registration of ajax-methodes
  */
-$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::ajaxTestAction']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->ajaxTestAction';
 
-// used parameter for ajax-call -> ajaxID=Tx_KiddogNews_Controller_AjaxController::ajaxTestAction
+// deleteCategoryByUid
+$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::deleteCategoryByUid']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->deleteCategoryByUid';
+
+// updateCategoryByUid
+$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::updateCategoryByUid']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->updateCategoryByUid';
+
+// getCategoryByUid
+$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::getCategoryByUid']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->getCategoryByUid';
+
+// getCategoriesByParentUid
+$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::getCategoriesByParentUid']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->getCategoriesByParentUid';
+
 ?>
