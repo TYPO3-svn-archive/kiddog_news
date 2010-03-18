@@ -49,11 +49,11 @@ Ext.onReady(function() {
 	       }
 	   });
 	};
+
 	
 	/**
 	 * Context-Menu
 	 */
-	
 	tree.on('contextmenu', prepareMenu);
 	var sm = tree.getSelectionModel();	
 	
@@ -177,7 +177,24 @@ Ext.onReady(function() {
 	}	
 	
 	function deleteNode() {
-		Ext.Msg.alert('Delete', 'Delete Node')
+		Ext.Ajax.request({
+		       url : 'ajax.php',
+		       method: 'GET',
+		       params :{'ajaxID':'Tx_KiddogNews_Controller_AjaxController::ajaxTestAction'},
+		       
+		       success: function (result, request) {
+		    	   // var jsonData = Ext.util.JSON.decode(result.responseText);
+		    	   // Ext.Msg.alert('success', jsonData[0]['name']);
+		    	   Ext.Msg.alert('success','success');
+		       },
+		       
+		       
+		       failure: function(result, request) {
+		    	   // var jsonData = Ext.util.JSON.decode(result.responseText);
+		    	   // Ext.Msg.alert('failure', jsonData[0]['name']);
+		    	   Ext.Msg.alert('failure', 'failure');
+		       }
+		   });
 	}
 
 });

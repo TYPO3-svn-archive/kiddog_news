@@ -24,4 +24,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Link' 		=> 'new,delete,update'
 		)
 );
+
+/**
+ * AJAX
+ */
+$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::ajaxTestAction']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->ajaxTestAction';
+
+// used parameter for ajax-call -> ajaxID=Tx_KiddogNews_Controller_AjaxController::ajaxTestAction
 ?>
