@@ -59,6 +59,8 @@ class Tx_KiddogNews_Controller_AjaxController{
 		$node = t3lib_div::_GP('node');
 		if($node=='root'){
 			$this->tx_kiddognews_ajax['foreignUid'] = 1;
+		}else{
+			$this->tx_kiddognews_ajax['foreignUid'] = $node;
 		}
 		
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
