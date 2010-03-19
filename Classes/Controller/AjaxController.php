@@ -53,11 +53,18 @@ class Tx_KiddogNews_Controller_AjaxController{
 	/** **********************************************************************************************
 	 * Get category by given uid ($_GP[tx_kiddognews_ajax]['uid'])
 	 ********************************************************************************************** */	
-	public function getCategoriesByParentUid($parentUid=1) {
+	public function getCategoriesByForeignUid() {
+		
+		// Workaround for the foreignUid
+		$node = t3lib_div::_GP('node');
+		if($node=='root'){
+			$this->tx_kiddognews_ajax['foreignUid'] = 1;
+		}
+		
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
                 	'name, uid',
                 	'tx_kiddognews_domain_model_category',
-                	'foreign_uid ='.$parentUid,
+                	'foreign_uid ='.$this->tx_kiddognews_ajax['foreignUid'],
                 	'',
                 	'name',
                 	''           

@@ -38,7 +38,6 @@ $TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::updateC
 // getCategoryByUid
 $TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::getCategoryByUid']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->getCategoryByUid';
 
-// getCategoriesByParentUid
-$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::getCategoriesByParentUid']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->getCategoriesByParentUid';
-
+// getCategoriesByForeignUid
+$TYPO3_CONF_VARS['BE']['AJAX']['Tx_KiddogNews_Controller_AjaxController::getCategoriesByForeignUid']='EXT:kiddog_news/Classes/Controller/AjaxController.php:Tx_KiddogNews_Controller_AjaxController->getCategoriesByForeignUid';
 ?>

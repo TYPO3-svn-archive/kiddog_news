@@ -15,12 +15,18 @@ Ext.onReady(function() {
 				enableDD : true,
 				containerScroll : true,
 				border : false,
-				dataUrl : 'ajax.php',
 				root : {
 					nodeType : 'async',
 					text : 'News Categoryies',
 					draggable : false,
-					id : 'getCategoriesByParentUid'
+					id:'root'
+				},
+				loader: {
+					url:'ajax.php',
+					baseParams:{
+						'ajaxID':'Tx_KiddogNews_Controller_AjaxController::getCategoriesByForeignUid',
+						'tx_kiddognews_ajax[foreignUid]':2					// TODO: foreignUid dynamisch uebergeben
+					}					
 				}
 			});
 
