@@ -25,7 +25,7 @@ Ext.onReady(function() {
 					url:'ajax.php',
 					baseParams:{
 						'ajaxID':'Tx_KiddogNews_Controller_AjaxController::getCategoriesByForeignUid',
-						'tx_kiddognews_ajax[foreignUid]':2					// TODO: foreignUid dynamisch uebergeben
+						'tx_kiddognews_ajax[foreignUid]':3					// TODO: foreignUid dynamisch uebergeben, momentan wird der standard Parameter $node verwendet
 					}					
 				}
 			});
@@ -42,14 +42,14 @@ Ext.onReady(function() {
 		Ext.Ajax.request({
 	       url : '../typo3conf/ext/kiddog_news/Classes/Controller/AjaxController.php',
 	       method: 'POST',
-	       params :{'node':'getCategoryByUid','category':node.id},
+	       params :{'ajaxID':'Tx_KiddogNews_Controller_AjaxController::getCategoryByUid',
+					'tx_kiddognews_ajax[uid]':node.id},
 	       
 	       success: function (result, request) {
 	    	   var jsonData = Ext.util.JSON.decode(result.responseText);
 	    	   Ext.Msg.alert('success', jsonData[0]['name']);
 	       },
-	       
-	       
+
 	       failure: function(result, request) {
 	    	   var jsonData = Ext.util.JSON.decode(result.responseText);
 	    	   Ext.Msg.alert('failure', jsonData[0]['name']);
