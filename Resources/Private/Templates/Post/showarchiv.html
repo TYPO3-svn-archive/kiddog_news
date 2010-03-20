@@ -5,7 +5,7 @@
 		<ul>
 		<f:for each="{posts}" as="post">
 			<li>
-				<f:render partial="postFeEditingMenu" arguments="{post:post}"/>
+				<f:render partial="postFeEditingMenu" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
 				<div class="tx_kiddognews-post-showarchiv-post">
 					<f:link.action arguments="{post:post}" action="showSingle">
 						<h2>{post.title}</h2>

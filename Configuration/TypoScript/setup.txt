@@ -2,7 +2,7 @@
 plugin.tx_kiddognews{
 	settings {
 		# Frontend usergroup who can edit posts, comments, links and files.
-		fe_usergroup.admin = 1
+		fe_usergroup.admin = 2
 		
 		# Time who the posts will archived (default: 30days)
 		time.archiv = 1000000
@@ -51,34 +51,7 @@ plugin.tx_kiddognews{
 }
 
 [globalVar = GP:tx_kiddognews_pi1|action = showRSS]
-page = PAGE
-page {
-	10 = USER
-	10 {
-		userFunc = tx_extbase_dispatcher->dispatch
-		pluginName = Pi1
-		extensionName = KiddogNews
-		controller = Post
-		switchableControllerActions {
-			1 {
-				controller 	= Post
-				actions		= showRSS
-			}
-		}
-		action = showRSS
-		
-		settings 		=< plugin.tx_kiddognews.settings
-		persistence     =< plugin.tx_kiddognews.persistence
-		view 			=< plugin.tx_kiddognews.view
-	}
 
-	config {
-		disableAllHeaderCode = 1
-		additionalHeaders = Content-type:application/xml
-		xhtml_cleaning = 0
-		admPanel = 0
-		}
-}
 [END]
 
 # Module configuration

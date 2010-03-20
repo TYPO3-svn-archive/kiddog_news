@@ -3,6 +3,25 @@
 <h3>Links</h3>
 	<ul>
 		<f:for each="{post.links}" as="link">
+			<f:if condition="{isFeEditingAllowed}">
+			    <div class="tx_kiddognews-post-postFeEditingMenu">
+			        <label>
+			            Frontend-Editing:
+			        </label>
+			        <ul>
+			            <li>
+			                <f:link.action action="edit" controller="Link" arguments="{link:link, post:post}">
+			                    <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="edit Link"/>
+			                </f:link.action>
+			            </li>
+			            <li>
+			                <f:link.action action="delete" controller="Comment" arguments="{link:link}">
+			                    <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="delete Link"/>
+			                </f:link.action>
+			            </li>
+			        </ul>
+			    </div>	
+			</f:if>					
 			<li>{link.link}</li>
 		</f:for>
 	</ul>

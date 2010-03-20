@@ -3,6 +3,25 @@
 <h3>Files</h3>
 	<ul>
 		<f:for each="{post.files}" as="file">
+			<f:if condition="{isFeEditingAllowed}">
+			    <div class="tx_kiddognews-post-postFeEditingMenu">
+			        <label>
+			            Frontend-Editing:
+			        </label>
+			        <ul>
+			            <li>
+			                <f:link.action action="edit" controller="Comment" arguments="{comment:comment, post:post}">
+			                    <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="edit Comment"/>
+			                </f:link.action>
+			            </li>
+			            <li>
+			                <f:link.action action="delete" controller="Comment" arguments="{comment:comment}">
+			                    <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="delete Comment"/>
+			                </f:link.action>
+			            </li>
+			        </ul>
+			    </div>	
+			</f:if>			
 			<li><f:link.external uri="uploads/tx_kiddognews/{file.file}" target="_blank">{file.title}</f:link.external></li>
 		</f:for>
 	</ul>

@@ -95,11 +95,13 @@ Ext.onReady(function() {
 	/** ****************************************************************************************************************************
 	 * Edit Category
 	 **************************************************************************************************************************** */	
-	function editCategory() {
+	function editCategory(node, e) {
 		Ext.Ajax.request({
 		       url : 'ajax.php',
 		       method: 'POST',
-		       params :{'ajaxID':'Tx_KiddogNews_Controller_AjaxController::getCategoryByUid','tx_kiddognews_ajax[uid]':2},		       
+		       params :{'ajaxID':'Tx_KiddogNews_Controller_AjaxController::getCategoryByUid',
+						'tx_kiddognews_ajax[uid]':node.id},
+						
 		       success: function (result, request) {
 		    	   var jsonData = Ext.util.JSON.decode(result.responseText);					// TODO: Node dynamisch uebergeben editNode(node)
 		    	   
@@ -191,9 +193,10 @@ Ext.onReady(function() {
 	
 	function deleteNode() {
 		Ext.Ajax.request({
-		       url : 'ajax.php',
+		       url: 'ajax.php',
 		       method: 'GET',
-		       params :{ 'ajaxID':'Tx_KiddogNews_Controller_AjaxController::deleteCategoryByUid','tx_kiddognews_ajax[uid]':2},
+		       params:{ 'ajaxID':'Tx_KiddogNews_Controller_AjaxController::deleteCategoryByUid',
+						'tx_kiddognews_ajax[uid]':2},
 		       
 		       success: function (result, request) {
 		    	   // var jsonData = Ext.util.JSON.decode(result.responseText);

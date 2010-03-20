@@ -1,3 +1,4 @@
+{namespace kiddogViewHelper=Tx_KiddogNews_ViewHelpers}
 <f:layout name="default" />
 <f:section name="content">
     <div class="tx_kiddognews-post-edit">
@@ -10,31 +11,31 @@
             <div>
                 <label for="author">
                     Author
-                </label>
+                </label><br/>
                 <f:form.textbox property="author" />
             </div>
             <div>
                 <label for="date">
                     Date
-                </label>
+                </label><br/>
                 <f:form.textbox property="date" value="{date}" />
             </div>
             <div>
                 <label for="title">
                     Title <span class="required">(required)</span>
-                </label>
+                </label><br/>
                 <f:form.textbox property="title" />
             </div>
             <div>
                 <label for="post">
                     Content <span class="required">(required)</span>
-                </label>
+                </label><br/>
                 <f:form.textarea property="post" rows="8" cols="46" />
             </div><f:form.submit class="submit" value="Submit"/>
         </f:form>
     </div>
 	
-    {namespace kiddogViewHelper=Tx_KiddogNews_ViewHelpers}
+	<!-- comments -->
     <f:if condition="{post.comments}">
         <h3>Comments:</h3>
         <f:for each="{post.comments}" as="comment">
@@ -80,4 +81,14 @@
             </div>
         </f:for>
     </f:if>
-    </f:section>
+	
+	<!-- files -->
+   	<f:render partial="postFiles" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
+	
+	<!-- links -->
+   	<f:render partial="postLinks" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
+	
+	<!-- related posts -->
+   	<f:render partial="postRelatedPosts" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
+	<!-- END -->	
+</f:section>

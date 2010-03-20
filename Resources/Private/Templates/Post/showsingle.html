@@ -1,7 +1,7 @@
 <f:layout name="default" />
 
 <f:section name="content">
-	<f:render partial="postFeEditingMenu" arguments="{post:post}"/>
+	<f:render partial="postFeEditingMenu" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
 	<div class="tx_kiddognews-post-showsingle">
 
 		<h2>{post.title}</h2>
@@ -17,9 +17,9 @@
 		<f:for each="{post.images}" as="image">
 			<f:image src="uploads/tx_kiddognews/{image.image}" alt="{image.alt}" title="{image.title}" width="430"></f:image>
 		</f:for>
-		<f:render partial="postFiles" arguments="{post:post}"/>
-		<f:render partial="postLinks" arguments="{post:post}"/>	
-		<f:render partial="postRelatedPosts" arguments="{post:post}"/>
-		<f:render partial="postComments" arguments="{post:post}"/>
+		<f:render partial="postFiles" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
+		<f:render partial="postLinks" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>	
+		<f:render partial="postRelatedPosts" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
+		<f:render partial="postComments" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
 	</div>
 </f:section>
