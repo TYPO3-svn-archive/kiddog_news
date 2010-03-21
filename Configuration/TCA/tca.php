@@ -699,7 +699,7 @@ $TCA['tx_kiddognews_domain_model_file'] = array(
 		
 		'title' => array(
 			'exclude' => 0,
-			'label'   => 'LLL:EXT:kiddog_news/Resources/Private/Language/locallang_db.xml:tx_kiddognews_domain_model_file.title',
+			'label'   => 'LLL:EXT:kiddog_news/Resources/Private/Language/locallang_db.xml:tx_kiddognews_domain_model_file.name',
 			'config'  => array(
 				'type' => 'input',
 				'size' => 30,

@@ -149,7 +149,7 @@ CREATE TABLE tx_kiddognews_domain_model_file (
 	pid int(11) DEFAULT '0' NOT NULL,
 	
 	title varchar(255) DEFAULT '' NOT NULL,
-	file text NOT NULL,
+	title text NOT NULL,
 	
 	foreign_uid varchar(30) DEFAULT '' NOT NULL,
 	foreign_table tinytext NOT NULL,

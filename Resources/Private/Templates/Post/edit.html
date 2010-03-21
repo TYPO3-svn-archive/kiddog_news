@@ -36,51 +36,7 @@
     </div>
 	
 	<!-- comments -->
-    <f:if condition="{post.comments}">
-        <h3>Comments:</h3>
-        <f:for each="{post.comments}" as="comment">
-            <div class="tx_kiddognews-post-postFeEditingMenu">
-                <label>
-                    Frontend-Editing:
-                </label>
-                <ul>
-                    <li>
-                        <f:link.action action="edit" controller="Comment" arguments="{comment:comment, post:post}">
-                            <img src="typo3/sysext/t3skin/icons/gfx/edit2.gif" alt="edit Comment"/>
-                        </f:link.action>
-                    </li>
-                    <li>
-                        <f:link.action action="delete" controller="Comment" arguments="{comment:comment}">
-                            <img src="typo3/sysext/t3skin/icons/gfx/garbage.gif" alt="delete Comment"/>
-                        </f:link.action>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <div style="background:grey; color:#fff; padding:3px">
-                    <f:format.date>{comment.date}</f:format.date>
-                    |&nbsp;{comment.name}
-                    <f:if condition="{comment.eMail}">
-                        |&nbsp;<f:link.email email="{comment.eMail}" />
-                    </f:if>
-                    <f:if condition="{comment.website}">
-                        |&nbsp;
-                        <f:link.external uri="{comment.website}" target="_blank">
-                            {comment.website}
-                        </f:link.external>
-                    </f:if>
-                </div>
-                <div class="subcolumns">
-                    <div class="c25l">
-                        <kiddogViewHelper:gravatar emailAddress="{comment.eMail}" size="40" defaultImageUri="" />
-                    </div>
-                    <div class="c75r">
-                        <f:format.crop maxCharacters="200">{comment.comment}</f:format.crop> 
-                    </div>
-                </div>
-            </div>
-        </f:for>
-    </f:if>
+	<f:render partial="postComments" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>
 	
 	<!-- files -->
    	<f:render partial="postFiles" arguments="{post:post,isFeEditingAllowed:isFeEditingAllowed}"/>

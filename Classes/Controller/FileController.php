@@ -36,6 +36,26 @@
 
 
 class Tx_KiddogNews_Controller_FileController extends Tx_Extbase_MVC_Controller_ActionController {
+
+	/**
+	 * @var Tx_KiddogNews_Domain_Repository_PostRepository 
+	 */
+	protected $postRepository;
+	
+	/**
+	 * @var Tx_KiddogNews_Domain_Repository_PostRepository 
+	 */
+	protected $fileRepository;	
+	
+	/**
+	 * Initializes the current action
+	 *
+	 * @return void
+	 */
+	public function initializeAction(){
+		$this->postRepository = t3lib_div::makeInstance('Tx_KiddogNews_Domain_Repository_PostRepository');
+		$this->fileRepository = t3lib_div::makeInstance('Tx_KiddogNews_Domain_Repository_FileRepository');
+	}		
 	
 	/**
 	 * new action
@@ -54,7 +74,7 @@ class Tx_KiddogNews_Controller_FileController extends Tx_Extbase_MVC_Controller_
 	}
 	
 	/*
-	 * Edit given comment
+	 * Edit given file
 	 * 
 	 * @param Tx_KiddogNews_Domain_Model_File $file
 	 * @param Tx_KiddogNews_Domain_Model_Post $post
@@ -74,7 +94,7 @@ class Tx_KiddogNews_Controller_FileController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function updateAction(Tx_KiddogNews_Domain_Model_File $editFile, Tx_KiddogNews_Domain_Model_Post $post) {
 		$this->fileRepository->update($editFile);
-		$this->flashMessages->add('File update success');
+		$this->flashMessages->add('Link update success');		
 		$this->redirect('edit', 'Post', NULL, array('post' => $post));
 	}	
 	
