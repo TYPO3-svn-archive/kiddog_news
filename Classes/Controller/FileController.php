@@ -37,7 +37,14 @@
 
 class Tx_KiddogNews_Controller_FileController extends Tx_Extbase_MVC_Controller_ActionController {
 	
-	
+	/**
+	 * new action
+	 *
+	 * @return string The rendered create action
+	 */
+	public function newAction() {
+	}
+		
 	/**
 	 * create action
 	 *
@@ -46,13 +53,30 @@ class Tx_KiddogNews_Controller_FileController extends Tx_Extbase_MVC_Controller_
 	public function createAction() {
 	}
 	
-	/**
-	 * edit action
-	 *
-	 * @return string The rendered edit action
+	/*
+	 * Edit given comment
+	 * 
+	 * @param Tx_KiddogNews_Domain_Model_File $file
+	 * @param Tx_KiddogNews_Domain_Model_Post $post
+	 * @return void
 	 */
-	public function editAction() {
-	}
+	public function editAction(Tx_KiddogNews_Domain_Model_File $file, Tx_KiddogNews_Domain_Model_Post $post){
+		$this->view->assign('file', $file);
+		$this->view->assign('post', $post);
+	}	
+
+	/**
+	 * Updates an existing file
+	 *
+	 * @param Tx_KiddogNews_Domain_Model_File $editFile The existing, unmodified file
+	 * @param Tx_KiddogNews_Domain_Model_Post $post
+	 * @return void
+	 */
+	public function updateAction(Tx_KiddogNews_Domain_Model_File $editFile, Tx_KiddogNews_Domain_Model_Post $post) {
+		$this->fileRepository->update($editFile);
+		$this->flashMessages->add('File update success');
+		$this->redirect('edit', 'Post', NULL, array('post' => $post));
+	}	
 	
 }
 ?>

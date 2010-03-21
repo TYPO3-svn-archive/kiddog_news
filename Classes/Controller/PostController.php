@@ -141,6 +141,7 @@ class Tx_KiddogNews_Controller_PostController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function createAction(Tx_KiddogNews_Domain_Model_Post $newPost) {
 		$this->postRepository->add($newPost);
+		$this->flashMessages->add('Post was created');
 		$this->redirect('showLatest', NULL, NULL, NULL);		
 	}	
 	
@@ -162,6 +163,7 @@ class Tx_KiddogNews_Controller_PostController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function	updateAction(Tx_KiddogNews_Domain_Model_Post $editPost) {
 		$this->postRepository->update($editPost);
+		$this->flashMessages->add('Post update success');
 		$this->redirect('showLatest', NULL, NULL, NULL);		
 	}
 	

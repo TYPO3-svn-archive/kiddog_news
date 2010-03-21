@@ -70,6 +70,7 @@ class Tx_KiddogNews_Controller_CategoryController extends Tx_Extbase_MVC_Control
 	 */
 	public function	updateAction(Tx_KiddogNews_Domain_Model_Category $editCategory) {
 		$this->categoryRepository->update($editCategory);
+		$this->flashMessages->add('Category update success');
 		$this->redirect('edit', 'Category', NULL, array('category' => $editCategory));		
 	}	
 }

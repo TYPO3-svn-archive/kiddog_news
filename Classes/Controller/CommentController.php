@@ -84,6 +84,7 @@ class Tx_KiddogNews_Controller_CommentController extends Tx_Extbase_MVC_Controll
 	 */
 	public function updateAction(Tx_KiddogNews_Domain_Model_Comment $editComment, Tx_KiddogNews_Domain_Model_Post $post) {
 		$this->commentRepository->update($editComment);
+		$this->flashMessages->add('Comment update success');
 		$this->redirect('edit', 'Post', NULL, array('post' => $post));
 	}		
 }

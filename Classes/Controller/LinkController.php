@@ -36,8 +36,35 @@
 
 
 class Tx_KiddogNews_Controller_LinkController extends Tx_Extbase_MVC_Controller_ActionController {
+
+	/**
+	 * @var Tx_KiddogNews_Domain_Repository_PostRepository 
+	 */
+	protected $postRepository;
 	
+	/**
+	 * @var Tx_KiddogNews_Domain_Repository_PostRepository 
+	 */
+	protected $linkRepository;	
 	
+	/**
+	 * Initializes the current action
+	 *
+	 * @return void
+	 */
+	public function initializeAction(){
+		$this->postRepository = t3lib_div::makeInstance('Tx_KiddogNews_Domain_Repository_PostRepository');
+		$this->linkRepository = t3lib_div::makeInstance('Tx_KiddogNews_Domain_Repository_LinkRepository');
+	}	
+	
+	/**
+	 * new action
+	 *
+	 * @return string The rendered create action
+	 */
+	public function newAction() {
+	}
+		
 	/**
 	 * create action
 	 *
@@ -46,13 +73,31 @@ class Tx_KiddogNews_Controller_LinkController extends Tx_Extbase_MVC_Controller_
 	public function createAction() {
 	}
 	
-	/**
-	 * edit action
-	 *
-	 * @return string The rendered edit action
+	/*
+	 * Edit given comment
+	 * 
+	 * @param Tx_KiddogNews_Domain_Model_Link $link
+	 * @param Tx_KiddogNews_Domain_Model_Post $post
+	 * @return void
 	 */
-	public function editAction() {
-	}
+	public function editAction(Tx_KiddogNews_Domain_Model_Link $link, Tx_KiddogNews_Domain_Model_Post $post){
+		$this->view->assign('link', $link);
+		$this->view->assign('post', $post);
+	}	
+
+	/**
+	 * Updates an existing file
+	 *
+	 * @param Tx_KiddogNews_Domain_Model_Link $editLink The existing, unmodified file
+	 * @param Tx_KiddogNews_Domain_Model_Post $post
+	 * @return void
+	 */
+	public function updateAction(Tx_KiddogNews_Domain_Model_Link $editLink, Tx_KiddogNews_Domain_Model_Post $post) {
+		$this->linkRepository->update($editLink);
+		$this->flashMessages->add('Link update success');		
+		$this->redirect('edit', 'Post', NULL, array('post' => $post));
+	}	
+	
 	
 }
 ?>

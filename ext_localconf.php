@@ -12,16 +12,16 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	array(
 		'Post' 		=> 'showLatest,showList,showArchiv,showRss,showSingle,new,create,edit,update,delete',
 		'Comment' 	=> 'create,edit,update',
-		'File' 		=> 'new,delete,update',
-		'Category' 	=> 'edit,new,delete,update',
-		'Link' 		=> 'new,delete,update'
+		'File' 		=> 'new,create,edit,update',
+		'Category' 	=> 'new,create,edit,update',
+		'Link' 		=> 'new,create,edit,update'
 		),
 	array(
 		'Post' 		=> 'showLatest,showList,showArchiv,showRss,showSingle,new,create,edit,update,delete',
 		'Comment' 	=> 'create,edit,update',
-		'File' 		=> 'new,delete,save',
-		'Category' 	=> 'edit,new,delete,update',
-		'Link' 		=> 'new,delete,update'
+		'File' 		=> 'new,create,edit,update',
+		'Category' 	=> 'new,create,edit,update',
+		'Link' 		=> 'new,create,edit,update'
 		)
 );
 
