@@ -43,6 +43,7 @@ class Tx_KiddogNews_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Title
 	 * @var string
+	 * @validate StringLength(minimum = 3, maximum = 255)
 	 */
 	protected $title;
 
